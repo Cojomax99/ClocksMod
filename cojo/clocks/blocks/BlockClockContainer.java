@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public abstract class ClockBlockContainer extends BlockContainer {
+public abstract class BlockClockContainer extends BlockContainer {
 
-	public ClockBlockContainer(int par1, Material par2Material) {
+	public BlockClockContainer(int par1, Material par2Material) {
 		super(par1, par2Material);
 		
 	}

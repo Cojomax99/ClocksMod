@@ -52,7 +52,7 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
             Tessellator tessellator = Tessellator.instance;
             byte b0 = 0;
 
-            GL11.glDisable(GL11.GL_TEXTURE_2D);
+/*            GL11.glDisable(GL11.GL_TEXTURE_2D);
             tessellator.startDrawingQuads();
             int j = fontrenderer.getStringWidth(displayText) / 2;
             tessellator.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.25F);
@@ -61,14 +61,14 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
             tessellator.addVertex((double)(j + 1), (double)(8 + b0), 0.0D);
             tessellator.addVertex((double)(j + 1), (double)(-1 + b0), 0.0D);
             tessellator.draw();
-            GL11.glEnable(GL11.GL_TEXTURE_2D);
+            GL11.glEnable(GL11.GL_TEXTURE_2D);*/
             /**
              * Draws the specified string. Args: string, x, y, color, dropShadow
              */
-            fontrenderer.drawString(displayText, -fontrenderer.getStringWidth(displayText) / 2, b0, 553648127);
+            fontrenderer.drawString(displayText, -fontrenderer.getStringWidth(displayText) / 2, clock.getColor(), 553648127);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             GL11.glDepthMask(true);
-            fontrenderer.drawString(displayText, -fontrenderer.getStringWidth(displayText) / 2, b0, -1);
+            fontrenderer.drawString(displayText, -fontrenderer.getStringWidth(displayText) / 2, clock.getColor(), -1);
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

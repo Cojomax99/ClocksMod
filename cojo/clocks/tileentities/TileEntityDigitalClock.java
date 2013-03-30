@@ -11,6 +11,7 @@ public class TileEntityDigitalClock extends TileEntity {
 	
 	public TileEntityDigitalClock() {
 		timeManager = new TimeManager();
+		textColor = 0;		//black by default
 	}
 	
     /**
