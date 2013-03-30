@@ -2,15 +2,18 @@ package cojo.clocks;
 
 import net.minecraft.block.Block;
 import cojo.clocks.blocks.DigitalClock;
+import cojo.clocks.tileentities.TileEntityDigitalClock;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ClockBlocks {
 	
-	public static Block clock;
+	public static Block digiClock;
 	
 	public static void init() {
-		clock = new DigitalClock(ModIds.BLOCK_DIGITAL_CLOCK).setUnlocalizedName("digitalClock");
+		digiClock = new DigitalClock(ModIds.BLOCK_DIGITAL_CLOCK).setUnlocalizedName("digitalClock");
+		
+		GameRegistry.registerTileEntity(TileEntityDigitalClock.class, "DigitalClock");
 	}
 	
 	private static void registerBlock(Block block, String name) {

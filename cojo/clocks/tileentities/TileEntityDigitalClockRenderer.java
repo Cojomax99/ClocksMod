@@ -1,5 +1,7 @@
 package cojo.clocks.tileentities;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -7,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 
 	public TileEntityDigitalClockRenderer() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -18,6 +20,12 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 	
 	private void renderDigitalClock(TileEntityDigitalClock clock, double x, double y, double z, float tick) {
 		FontRenderer fontrenderer = this.getFontRenderer();
+				
+		 GL11.glDepthMask(false);
+		 
+		 fontrenderer.drawString("hello !", -fontrenderer.getStringWidth("hello !") / 2, 10 - "hello !".length() * 5, 0);
+	//	 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		 GL11.glDepthMask(true);
 	}
 
 }

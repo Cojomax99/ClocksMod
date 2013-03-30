@@ -19,5 +19,9 @@ public class CommonProxy implements IGuiHandler {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void registerTESRs() {
+		
+	}
 
 }
