@@ -42,15 +42,15 @@ public class TimeManager {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH));
+		sb.append(calendar.get(Calendar.DAY_OF_MONTH));
 		sb.append("/");
-		sb.append(calendar.get(Calendar.MONTH));
+		sb.append(calendar.get(Calendar.MONTH) + 1);
 		sb.append("/");
 		sb.append(calendar.get(Calendar.YEAR));
 		
 		Date date = new Date();
 		
-		return date.toString();
+		return sb.toString();
 	}
 
 }
