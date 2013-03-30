@@ -2,6 +2,8 @@ package cojo.clocks.gui;
 
 import org.lwjgl.input.Keyboard;
 
+import cojo.clocks.tileentities.TileEntityDigitalClock;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
@@ -10,9 +12,20 @@ public class GuiDigitalClock extends GuiScreen {
 
 	private GuiButton butt1;
 	
-	public GuiDigitalClock() {
+    /** Text field containing the clock's text color. */
+    private GuiTextField colorTextField;
+	
+	public GuiDigitalClock(TileEntityDigitalClock clock) {
 		
 	}
+	
+    /**
+     * Called from the main game loop to update the screen.
+     */
+    public void updateScreen()
+    {
+        this.colorTextField.updateCursorCounter();
+    }
 	
     /**
      * Adds the buttons (and other controls) to the screen in question.

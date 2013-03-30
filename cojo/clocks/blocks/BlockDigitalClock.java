@@ -28,9 +28,7 @@ public class BlockDigitalClock extends BlockClockContainer {
 		
 		TileEntityDigitalClock clock = (TileEntityDigitalClock)te;
 		
-		if (clock == null) return false;
-		
-		FMLCommonHandler.instance().showGuiScreen(new GuiDigitalClock());
+		FMLCommonHandler.instance().showGuiScreen(new GuiDigitalClock(clock));
 		
         return false;
     }
