@@ -22,13 +22,13 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 	}
 
 	private void renderDigitalClock(TileEntityDigitalClock clock, double x, double y, double z, float par8) {
-		renderLivingLabel(clock.getCurrentDate(), x, y, z, 2);		
+		renderLivingLabel(clock, clock.getCurrentDate(), x, y, z, 2);		
 	}
 	
 	 /**
      * Draws the debug or playername text above a living
      */
-    protected void renderLivingLabel(String par2Str, double par3, double par5, double par7, int par9)
+    protected void renderLivingLabel(TileEntityDigitalClock clock, String displayText, double x, double y, double z, int par9)
     {
         double d3 = 1.0;
 
@@ -38,7 +38,7 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
             float f = 1.6F;
             float f1 = 0.016666668F * f;
             GL11.glPushMatrix();
-            GL11.glTranslatef((float)par3 + 0.5F, (float)par5 + 0.5F, (float)par7);
+            GL11.glTranslatef((float)x + 0.5F, (float)y + 0.5F, (float)z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             //TODO: determine direction based on face of clock
          //   GL11.glRotatef(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
@@ -54,7 +54,7 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 
             GL11.glDisable(GL11.GL_TEXTURE_2D);
             tessellator.startDrawingQuads();
-            int j = fontrenderer.getStringWidth(par2Str) / 2;
+            int j = fontrenderer.getStringWidth(displayText) / 2;
             tessellator.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.25F);
             tessellator.addVertex((double)(-j - 1), (double)(-1 + b0), 0.0D);
             tessellator.addVertex((double)(-j - 1), (double)(8 + b0), 0.0D);
@@ -62,10 +62,13 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
             tessellator.addVertex((double)(j + 1), (double)(-1 + b0), 0.0D);
             tessellator.draw();
             GL11.glEnable(GL11.GL_TEXTURE_2D);
-            fontrenderer.drawString(par2Str, -fontrenderer.getStringWidth(par2Str) / 2, b0, 553648127);
+            /**
+             * Draws the specified string. Args: string, x, y, color, dropShadow
+             */
+            fontrenderer.drawString(displayText, -fontrenderer.getStringWidth(displayText) / 2, b0, 553648127);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             GL11.glDepthMask(true);
-            fontrenderer.drawString(par2Str, -fontrenderer.getStringWidth(par2Str) / 2, b0, -1);
+            fontrenderer.drawString(displayText, -fontrenderer.getStringWidth(displayText) / 2, b0, -1);
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

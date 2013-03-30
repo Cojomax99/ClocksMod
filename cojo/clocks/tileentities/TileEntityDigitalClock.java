@@ -7,6 +7,8 @@ public class TileEntityDigitalClock extends TileEntity {
 
 	private TimeManager timeManager;
 	
+	private int textColor;
+	
 	public TileEntityDigitalClock() {
 		timeManager = new TimeManager();
 	}
@@ -26,6 +28,14 @@ public class TileEntityDigitalClock extends TileEntity {
     
     public String getCurrentTime() {
     	return timeManager.getCurrentTime24();
+    }
+    
+    public void setTextColor(int color) {
+    	this.textColor = color;
+    }
+    
+    public int getColor() {
+    	return this.textColor;
     }
 
 }
