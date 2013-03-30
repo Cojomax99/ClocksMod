@@ -23,5 +23,9 @@ public class TileEntityDigitalClock extends TileEntity {
     public String getCurrentDate() {
     	return timeManager.getCurrentDate();
     }
+    
+    public String getCurrentTime() {
+    	return timeManager.getCurrentTime24();
+    }
 
 }

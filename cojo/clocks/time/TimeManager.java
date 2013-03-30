@@ -1,6 +1,7 @@
 package cojo.clocks.time;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class TimeManager {
 
@@ -47,7 +48,9 @@ public class TimeManager {
 		sb.append("/");
 		sb.append(calendar.get(Calendar.YEAR));
 		
-		return sb.toString();
+		Date date = new Date();
+		
+		return date.toString();
 	}
 
 }
