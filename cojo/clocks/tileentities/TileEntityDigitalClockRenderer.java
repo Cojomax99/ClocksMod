@@ -38,7 +38,7 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
             float f = 1.6F;
             float f1 = 0.016666668F * f;
             GL11.glPushMatrix();
-            GL11.glTranslatef((float)par3 + 0.0F, (float)par5 + 0.5F, (float)par7);
+            GL11.glTranslatef((float)par3 + 0.5F, (float)par5 + 0.5F, (float)par7);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             //TODO: determine direction based on face of clock
          //   GL11.glRotatef(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
@@ -51,11 +51,6 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             Tessellator tessellator = Tessellator.instance;
             byte b0 = 0;
-
-            if (par2Str.equals("deadmau5"))
-            {
-                b0 = -10;
-            }
 
             GL11.glDisable(GL11.GL_TEXTURE_2D);
             tessellator.startDrawingQuads();
