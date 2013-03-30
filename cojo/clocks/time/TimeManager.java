@@ -13,7 +13,13 @@ public class TimeManager {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(b)
+		sb.append(calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH));
+		sb.append("/");
+		sb.append(calendar.get(Calendar.MONTH));
+		sb.append("/");
+		sb.append(calendar.get(Calendar.YEAR));
+		
+		return sb.toString();
 	}
 
 }
