@@ -63,6 +63,8 @@ public class ClocksMod {
 		ClockBlocks.init();
 		ClockItems.init();
 
+		proxy.registerTESRs();
+		
 		//schedule this class for event callbacks
 		MinecraftForge.EVENT_BUS.register(this);
 	}
