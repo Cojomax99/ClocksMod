@@ -4,7 +4,7 @@ import java.util.logging.Level;
 
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-import cojo.proxies.CommonProxy;
+import cojo.clocks.proxies.CommonProxy;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -32,7 +32,7 @@ public class ClocksMod {
 	public Configuration config;
 
 	/** Used for client-side stuff on servers, etc */
-	@SidedProxy(clientSide = "clocks.proxies.ClientProxy", serverSide = "clocks.proxies.CommonProxy")
+	@SidedProxy(clientSide = "cojo.clocks.proxies.ClientProxy", serverSide = "cojo.clocks.proxies.CommonProxy")
 	public static CommonProxy proxy;
 
 	/**

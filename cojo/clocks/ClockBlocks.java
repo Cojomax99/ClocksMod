@@ -13,6 +13,8 @@ public class ClockBlocks {
 	public static void init() {
 		digiClock = new DigitalClock(ModIds.BLOCK_DIGITAL_CLOCK).setUnlocalizedName("digitalClock");
 		
+		registerBlock(digiClock, "Digital Clock");
+		
 		GameRegistry.registerTileEntity(TileEntityDigitalClock.class, "DigitalClock");
 	}
 	

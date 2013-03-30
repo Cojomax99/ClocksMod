@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 
 	public TileEntityDigitalClockRenderer() {
-		
+
 	}
 
 	@Override
@@ -17,15 +17,18 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 			double d2, float f) {
 		renderDigitalClock((TileEntityDigitalClock)tileentity, d0, d1, d2, f);
 	}
-	
+
 	private void renderDigitalClock(TileEntityDigitalClock clock, double x, double y, double z, float tick) {
 		FontRenderer fontrenderer = this.getFontRenderer();
-				
-		 GL11.glDepthMask(false);
-		 
-		 fontrenderer.drawString("hello !", -fontrenderer.getStringWidth("hello !") / 2, 10 - "hello !".length() * 5, 0);
-	//	 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		 GL11.glDepthMask(true);
+
+		GL11.glPushMatrix();
+		GL11.glTranslatef((float)x + 0.5F, (float)y, (float)z + 0.5F);
+		// GL11.glDepthMask(false);
+
+		fontrenderer.drawString("hello !", -fontrenderer.getStringWidth("hello !") / 2, 10 - "hello !".length() * 5, 0);
+		//	 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		// GL11.glDepthMask(true);
+		GL11.glPushMatrix();
 	}
 
 }
