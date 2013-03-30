@@ -22,7 +22,7 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 	}
 
 	private void renderDigitalClock(TileEntityDigitalClock clock, double x, double y, double z, float par8) {
-		renderLivingLabel("PLS WORK", x, y, z, 2);		
+		renderLivingLabel(clock.getCurrentDate(), x, y, z, 2);		
 	}
 	
 	 /**
@@ -38,8 +38,9 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
             float f = 1.6F;
             float f1 = 0.016666668F * f;
             GL11.glPushMatrix();
-            GL11.glTranslatef((float)par3 + 0.0F, (float)par5 + 2 + 0.5F, (float)par7);
+            GL11.glTranslatef((float)par3 + 0.0F, (float)par5 + 0.5F, (float)par7);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+            //TODO: determine direction based on face of clock
          //   GL11.glRotatef(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
        //     GL11.glRotatef(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
             GL11.glScalef(-f1, -f1, f1);
