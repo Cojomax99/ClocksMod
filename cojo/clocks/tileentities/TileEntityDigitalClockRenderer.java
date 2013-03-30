@@ -1,12 +1,13 @@
 package cojo.clocks.tileentities;
 
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.tileentity.TileEntity;
-
 import org.lwjgl.opengl.GL11;
+
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 
 public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 
@@ -21,35 +22,59 @@ public class TileEntityDigitalClockRenderer extends TileEntitySpecialRenderer {
 	}
 
 	private void renderDigitalClock(TileEntityDigitalClock clock, double x, double y, double z, float par8) {
-		/*FontRenderer fontrenderer = this.getFontRenderer();
-
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float)x + 0.5F, (float)y, (float)z + 0.5F);
-		// GL11.glDepthMask(false);
-
-		fontrenderer.drawString("hello !", -fontrenderer.getStringWidth("hello !") / 2, 10 - "hello !".length() * 5, 0);
-		//	 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		// GL11.glDepthMask(true);
-		GL11.glPushMatrix();*/
-		
-        GL11.glPushMatrix();
-        GL11.glTranslatef((float)x + 0.5F, (float)y, (float)z + 0.5F);
-		Entity entity = new EntityPig(clock.getWorldObj());
-
-		if (entity != null)
-		{
-			entity.setWorld(clock.getWorldObj());
-			float f1 = 0.4375F;
-			GL11.glTranslatef(0.0F, 0.4F, 0.0F);
-		//	GL11.glRotatef((float)(par0MobSpawnerBaseLogic.field_98284_d + (par0MobSpawnerBaseLogic.field_98287_c - par0MobSpawnerBaseLogic.field_98284_d) * (double)par7) * 10.0F, 0.0F, 1.0F, 0.0F);
-			GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
-			GL11.glTranslatef(0.0F, -0.4F, 0.0F);
-			GL11.glScalef(f1, f1, f1);
-			entity.setLocationAndAngles(x, y, z, 0.0F, 0.0F);
-			RenderManager.instance.renderEntityWithPosYaw(entity, 0.0D, 0.0D, 0.0D, 0.0F, par8);
-		}
-		
-		GL11.glPopMatrix();
+		renderLivingLabel("PLS WORK", x, y, z, 2);		
 	}
+	
+	 /**
+     * Draws the debug or playername text above a living
+     */
+    protected void renderLivingLabel(String par2Str, double par3, double par5, double par7, int par9)
+    {
+        double d3 = 1.0;
+
+        if (d3 <= (double)(par9 * par9))
+        {
+            FontRenderer fontrenderer = this.getFontRenderer();
+            float f = 1.6F;
+            float f1 = 0.016666668F * f;
+            GL11.glPushMatrix();
+            GL11.glTranslatef((float)par3 + 0.0F, (float)par5 + 2 + 0.5F, (float)par7);
+            GL11.glNormal3f(0.0F, 1.0F, 0.0F);
+         //   GL11.glRotatef(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
+       //     GL11.glRotatef(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+            GL11.glScalef(-f1, -f1, f1);
+            GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glDepthMask(false);
+            GL11.glDisable(GL11.GL_DEPTH_TEST);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            Tessellator tessellator = Tessellator.instance;
+            byte b0 = 0;
+
+            if (par2Str.equals("deadmau5"))
+            {
+                b0 = -10;
+            }
+
+            GL11.glDisable(GL11.GL_TEXTURE_2D);
+            tessellator.startDrawingQuads();
+            int j = fontrenderer.getStringWidth(par2Str) / 2;
+            tessellator.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.25F);
+            tessellator.addVertex((double)(-j - 1), (double)(-1 + b0), 0.0D);
+            tessellator.addVertex((double)(-j - 1), (double)(8 + b0), 0.0D);
+            tessellator.addVertex((double)(j + 1), (double)(8 + b0), 0.0D);
+            tessellator.addVertex((double)(j + 1), (double)(-1 + b0), 0.0D);
+            tessellator.draw();
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
+            fontrenderer.drawString(par2Str, -fontrenderer.getStringWidth(par2Str) / 2, b0, 553648127);
+            GL11.glEnable(GL11.GL_DEPTH_TEST);
+            GL11.glDepthMask(true);
+            fontrenderer.drawString(par2Str, -fontrenderer.getStringWidth(par2Str) / 2, b0, -1);
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glDisable(GL11.GL_BLEND);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glPopMatrix();
+        }
+    }
 
 }
