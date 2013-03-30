@@ -1,11 +1,14 @@
 package cojo.clocks.tileentities;
 
 import net.minecraft.tileentity.TileEntity;
+import cojo.clocks.time.TimeManager;
 
 public class TileEntityDigitalClock extends TileEntity {
 
+	private TimeManager timeManager;
+	
 	public TileEntityDigitalClock() {
-		
+		timeManager = new TimeManager();
 	}
 	
     /**
@@ -15,6 +18,10 @@ public class TileEntityDigitalClock extends TileEntity {
     public void updateEntity()
     {
         super.updateEntity();
+    }
+    
+    public String getCurrentDate() {
+    	return timeManager.getCurrentDate();
     }
 
 }
