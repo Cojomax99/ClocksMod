@@ -10,7 +10,12 @@ import net.minecraft.client.gui.GuiTextField;
 
 public class GuiDigitalClock extends GuiScreen {
 
-	private GuiButton butt1;
+	private GuiButton rLeft;
+	private GuiButton rRight;
+	private GuiButton gLeft;
+	private GuiButton gRight;
+	private GuiButton bLeft;
+	private GuiButton bRight;
 	
     /** Text field containing the clock's red text color. */
     private GuiTextField colorTextFieldR;
@@ -43,7 +48,8 @@ public class GuiDigitalClock extends GuiScreen {
     public void initGui()
     {
     	this.buttonList.clear();
-        this.buttonList.add(this.butt1 = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, ": )"));
+    	//id x y width height text
+        this.buttonList.add(this.rLeft = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, ": )"));
         //x y width height
         this.colorTextFieldR = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 60, 40, 20);
         this.colorTextFieldR.setMaxStringLength(32767);
