@@ -28,6 +28,7 @@ public class BlockDigitalClock extends BlockClockContainer {
 		
 		TileEntityDigitalClock clock = (TileEntityDigitalClock)te;
 		
+		if (par1World.isRemote)
 		FMLCommonHandler.instance().showGuiScreen(new GuiDigitalClock(clock));
 		
         return false;
