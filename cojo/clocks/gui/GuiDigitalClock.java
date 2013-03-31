@@ -50,11 +50,11 @@ public class GuiDigitalClock extends GuiScreen {
     	this.buttonList.clear();
     	//id x y width height text
         this.buttonList.add(this.rLeft = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, 20, 20, "<"));
-        this.buttonList.add(this.rRight = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, 20, 20, ">"));
-        this.buttonList.add(this.gLeft = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, 20, 20, "<"));
-        this.buttonList.add(this.gRight = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, 20, 20, ">"));
-        this.buttonList.add(this.bLeft = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, 20, 20, "<"));
-        this.buttonList.add(this.bRight = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, 20, 20, ">"));
+        this.buttonList.add(this.rRight = new GuiButton(1, this.width / 2 - 50, this.height / 4 + 96 + 12, 20, 20, ">"));
+        this.buttonList.add(this.gLeft = new GuiButton(2, this.width / 2 - 100, this.height / 4 + 96 + 24, 20, 20, "<"));
+        this.buttonList.add(this.gRight = new GuiButton(3, this.width / 2 - 50, this.height / 4 + 96 + 24, 20, 20, ">"));
+        this.buttonList.add(this.bLeft = new GuiButton(4, this.width / 2 - 100, this.height / 4 + 96 + 36, 20, 20, "<"));
+        this.buttonList.add(this.bRight = new GuiButton(5, this.width / 2 - 50, this.height / 4 + 96 + 36, 20, 20, ">"));
         //x y width height
         this.colorTextFieldR = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 60, 40, 20);
         this.colorTextFieldR.setMaxStringLength(32767);
