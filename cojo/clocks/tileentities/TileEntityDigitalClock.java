@@ -38,5 +38,16 @@ public class TileEntityDigitalClock extends TileEntity {
     public int getColor() {
     	return this.textColor;
     }
+    
+    public int getRed() {
+    	return this.textColor & 0xff;
+    }
 
+    public int getGreen() {
+    	return (this.textColor >> 8) & 0xff;
+    }
+    
+    public int getBlue() {
+    	return (this.textColor >> 16) & 0xff;
+    }
 }

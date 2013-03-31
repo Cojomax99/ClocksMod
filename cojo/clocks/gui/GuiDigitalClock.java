@@ -12,8 +12,14 @@ public class GuiDigitalClock extends GuiScreen {
 
 	private GuiButton butt1;
 	
-    /** Text field containing the clock's text color. */
-    private GuiTextField colorTextField;
+    /** Text field containing the clock's red text color. */
+    private GuiTextField colorTextFieldR;
+    
+    /** Text field containing the clock's green text color. */
+    private GuiTextField colorTextFieldG;
+    
+    /** Text field containing the clock's blue text color. */
+    private GuiTextField colorTextFieldB;
     
     private TileEntityDigitalClock clock;
 	
@@ -26,7 +32,9 @@ public class GuiDigitalClock extends GuiScreen {
      */
     public void updateScreen()
     {
-        this.colorTextField.updateCursorCounter();
+        this.colorTextFieldR.updateCursorCounter();
+        this.colorTextFieldG.updateCursorCounter();
+        this.colorTextFieldB.updateCursorCounter();
     }
 	
     /**
@@ -36,10 +44,19 @@ public class GuiDigitalClock extends GuiScreen {
     {
     	this.buttonList.clear();
         this.buttonList.add(this.butt1 = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, ": )"));
-        this.colorTextField = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 60, 300, 20);
-        this.colorTextField.setMaxStringLength(32767);
-        this.colorTextField.setFocused(true);
-        this.colorTextField.setText(this.clock.getColor() + "");
+        //x y width height
+        this.colorTextFieldR = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 60, 40, 20);
+        this.colorTextFieldR.setMaxStringLength(32767);
+        this.colorTextFieldR.setFocused(true);
+        this.colorTextFieldR.setText(this.clock.getRed() + "");
+        
+        this.colorTextFieldG = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 90, 40, 20);
+        this.colorTextFieldG.setMaxStringLength(32767);
+        this.colorTextFieldG.setText(this.clock.getGreen() + "");
+        
+        this.colorTextFieldB = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 120, 40, 20);
+        this.colorTextFieldB.setMaxStringLength(32767);
+        this.colorTextFieldB.setText(this.clock.getBlue() + "");
     }
 	
     /**
@@ -47,7 +64,9 @@ public class GuiDigitalClock extends GuiScreen {
      */
     public void drawScreen(int par1, int par2, float par3)
     {
-    	this.colorTextField.drawTextBox();
+    	this.colorTextFieldR.drawTextBox();
+    	this.colorTextFieldG.drawTextBox();
+    	this.colorTextFieldB.drawTextBox();
         super.drawScreen(par1, par2, par3);
     }
     
@@ -57,7 +76,9 @@ public class GuiDigitalClock extends GuiScreen {
     protected void mouseClicked(int par1, int par2, int par3)
     {
         super.mouseClicked(par1, par2, par3);
-        this.colorTextField.mouseClicked(par1, par2, par3);
+        this.colorTextFieldR.mouseClicked(par1, par2, par3);
+        this.colorTextFieldG.mouseClicked(par1, par2, par3);
+        this.colorTextFieldB.mouseClicked(par1, par2, par3);
     }
     
     /**
@@ -65,7 +86,11 @@ public class GuiDigitalClock extends GuiScreen {
      */
     protected void keyTyped(char par1, int par2)
     {
-        this.colorTextField.textboxKeyTyped(par1, par2);
+        this.colorTextFieldR.textboxKeyTyped(par1, par2);
+        this.colorTextFieldG.textboxKeyTyped(par1, par2);
+        this.colorTextFieldB.textboxKeyTyped(par1, par2);
+    	super.keyTyped(par1, par2);
+
     }
 
 }
