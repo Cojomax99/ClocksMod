@@ -1,5 +1,8 @@
 package cojo.clocks.gui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
 import org.lwjgl.input.Keyboard;
 
 import cojo.clocks.tileentities.TileEntityDigitalClock;
@@ -7,6 +10,8 @@ import cojo.clocks.tileentities.TileEntityDigitalClock;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet250CustomPayload;
 
 public class GuiDigitalClock extends GuiScreen {
 
@@ -49,23 +54,23 @@ public class GuiDigitalClock extends GuiScreen {
     {
     	this.buttonList.clear();
     	//id x y width height text
-        this.buttonList.add(this.rLeft = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, 20, 20, "<"));
-        this.buttonList.add(this.rRight = new GuiButton(1, this.width / 2 - 50, this.height / 4 + 96 + 12, 20, 20, ">"));
-        this.buttonList.add(this.gLeft = new GuiButton(2, this.width / 2 - 100, this.height / 4 + 96 + 24, 20, 20, "<"));
-        this.buttonList.add(this.gRight = new GuiButton(3, this.width / 2 - 50, this.height / 4 + 96 + 24, 20, 20, ">"));
-        this.buttonList.add(this.bLeft = new GuiButton(4, this.width / 2 - 100, this.height / 4 + 96 + 36, 20, 20, "<"));
-        this.buttonList.add(this.bRight = new GuiButton(5, this.width / 2 - 50, this.height / 4 + 96 + 36, 20, 20, ">"));
+        this.buttonList.add(this.rLeft = new GuiButton(0, this.width / 2 - 180, this.height / 4 + 96 - 96, 20, 20, "<"));
+        this.buttonList.add(this.rRight = new GuiButton(1, this.width / 2 - 110, this.height / 4 + 96 - 96, 20, 20, ">"));
+        this.buttonList.add(this.gLeft = new GuiButton(2, this.width / 2 - 180, this.height / 4 + 96 - 46, 20, 20, "<"));
+        this.buttonList.add(this.gRight = new GuiButton(3, this.width / 2 - 110, this.height / 4 + 96 - 46, 20, 20, ">"));
+        this.buttonList.add(this.bLeft = new GuiButton(4, this.width / 2 - 180, this.height / 4 + 96 + 6, 20, 20, "<"));
+        this.buttonList.add(this.bRight = new GuiButton(5, this.width / 2 - 110, this.height / 4 + 96 + 6, 20, 20, ">"));
         //x y width height
-        this.colorTextFieldR = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 60, 40, 20);
+        this.colorTextFieldR = new GuiTextField(this.fontRenderer, this.width / 2 - 150, this.height / 4 + 96 - 96, 30, 20);
         this.colorTextFieldR.setMaxStringLength(32767);
         this.colorTextFieldR.setFocused(true);
         this.colorTextFieldR.setText(this.clock.getRed() + "");
         
-        this.colorTextFieldG = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 90, 40, 20);
+        this.colorTextFieldG = new GuiTextField(this.fontRenderer, this.width / 2 - 150, this.height / 4 + 96 - 46, 30, 20);
         this.colorTextFieldG.setMaxStringLength(32767);
         this.colorTextFieldG.setText(this.clock.getGreen() + "");
         
-        this.colorTextFieldB = new GuiTextField(this.fontRenderer, this.width / 2 - 150, 120, 40, 20);
+        this.colorTextFieldB = new GuiTextField(this.fontRenderer, this.width / 2 - 150, this.height / 4 + 96 + 6, 30, 20);
         this.colorTextFieldB.setMaxStringLength(32767);
         this.colorTextFieldB.setText(this.clock.getBlue() + "");
     }
@@ -75,8 +80,12 @@ public class GuiDigitalClock extends GuiScreen {
      */
     public void drawScreen(int par1, int par2, float par3)
     {
+    	this.drawGradientRect(0, 0, this.width, this.height, 0x000000aa, -0x000000aa);
+    	this.drawString(this.fontRenderer, "Red", this.width / 2 - 145, this.height / 4 + 96 - 110, 0xff0000);
     	this.colorTextFieldR.drawTextBox();
+    	this.drawString(this.fontRenderer, "Green", this.width / 2 - 149, this.height / 4 + 96 - 60, 0x00ff00);
     	this.colorTextFieldG.drawTextBox();
+    	this.drawString(this.fontRenderer, "Blue", this.width / 2 - 145, this.height / 4 + 96 - 10, 0x0000ff);
     	this.colorTextFieldB.drawTextBox();
         super.drawScreen(par1, par2, par3);
     }
@@ -101,7 +110,21 @@ public class GuiDigitalClock extends GuiScreen {
         this.colorTextFieldG.textboxKeyTyped(par1, par2);
         this.colorTextFieldB.textboxKeyTyped(par1, par2);
     	super.keyTyped(par1, par2);
-
+    }
+    
+    /**
+     * Fired when a control is clicked. This is the equivalent of ActionListener.actionPerformed(ActionEvent e).
+     */
+    protected void actionPerformed(GuiButton par1GuiButton)
+    {
+        if (par1GuiButton.enabled)
+        {
+            if (par1GuiButton.id == 0)
+            {
+                this.clock.setRed(clock.getRed() - 1);
+            }
+           
+        }
     }
 
 }

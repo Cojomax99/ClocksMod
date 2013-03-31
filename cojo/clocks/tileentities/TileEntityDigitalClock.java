@@ -1,17 +1,21 @@
 package cojo.clocks.tileentities;
 
 import net.minecraft.tileentity.TileEntity;
+
+import org.lwjgl.util.Color;
+import org.lwjgl.util.ReadableColor;
+
 import cojo.clocks.time.TimeManager;
 
 public class TileEntityDigitalClock extends TileEntity {
 
 	private TimeManager timeManager;
 	
-	private int textColor;
+	private Color textColor;
 	
 	public TileEntityDigitalClock() {
 		timeManager = new TimeManager();
-		textColor = 0;		//black by default
+		textColor = new Color();
 	}
 	
     /**
@@ -32,22 +36,26 @@ public class TileEntityDigitalClock extends TileEntity {
     }
     
     public void setTextColor(int color) {
-    	this.textColor = color;
+    	this.textColor.set(color & 0xff, (color << 8) & 0xff, (color << 16) & 0xff);
     }
     
-    public int getColor() {
+    public Color getColor() {
     	return this.textColor;
     }
     
+    public void setRed(int nRed) {
+    	this.textColor.setRed(nRed);
+    }
+    
     public int getRed() {
-    	return this.textColor & 0xff;
+    	return this.textColor.getRed();
     }
 
     public int getGreen() {
-    	return (this.textColor >> 8) & 0xff;
+    	return this.textColor.getGreen();
     }
     
     public int getBlue() {
-    	return (this.textColor >> 16) & 0xff;
+    	return this.textColor.getBlue();
     }
 }
